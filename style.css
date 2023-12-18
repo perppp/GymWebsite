@@ -221,6 +221,85 @@ header{
 .subscriptionMain{
     display: flex;
 }
+.grayishFourPicture{
+    background-color: #201C2C;
+    width: 100vw;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    gap: 25px;
+    opacity: 100%;
+}
+.fourPictures{
+    width: 21vw;
+    height: 21vw;
+    background-size: cover;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+.viewMore{
+    color: white;
+}
+.fourPictures:hover {
+    outline: 5px solid #fc540c;
+    cursor: pointer;
+    filter: opacity(45%);
+}
+  
+.zoomIcon {
+    display: none;
+}
+
+.fourPictures:hover .zoomIcon {
+    display: block;
+}
+
+.viewMore {
+    display: none;
+}
+
+.fourPictures:hover .viewMore {
+    display: block;
+}
+.fourPictures.maximized {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.5);
+    z-index: 9999;
+    cursor: pointer;
+}
+.maximizedImageContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Dark overlay for background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.maximizedImage {
+    max-width: 80vw; /* Adjust the maximum width as needed for the maximized image */
+    max-height: 80vh; /* Adjust the maximum height as needed for the maximized image */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.maximizedImage:hover {
+    cursor: pointer;
+}
+
 
 
 

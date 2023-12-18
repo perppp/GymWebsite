@@ -33,3 +33,28 @@ var info1Elements = document.querySelectorAll('.info1');
       });
     });
   });
+
+  
+  
+  
+document.addEventListener("DOMContentLoaded", function() {
+  var pictures = document.querySelectorAll(".fourPictures");
+  var maximizedImageContainer = document.querySelector(".maximizedImageContainer");
+  var maximizedImage = document.querySelector(".maximizedImage");
+
+  pictures.forEach(function(picture) {
+    picture.addEventListener("click", function() {
+      var imageUrl = this.style.backgroundImage.slice(5, -2);
+      maximizedImage.style.backgroundImage = "url(" + imageUrl + ")";
+      maximizedImageContainer.style.display = "flex";
+      maximizedImage.style.width = "620px"
+      maximizedImage.style.height = "620px"
+    });
+  });
+
+  maximizedImageContainer.addEventListener("click", function() {
+    maximizedImageContainer.style.display = "none";
+  });
+});
+
+  
