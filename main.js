@@ -57,4 +57,72 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-  
+
+
+
+// Testimonial moving
+
+const slider = document.querySelector('.movFlex');
+let isDown = false;
+let startX;
+let scrollLeft;
+let startScrollLeft;
+let autoScrollInterval;
+
+slider.addEventListener('mousedown', (e) => {
+  isDown = true;
+  startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
+  startScrollLeft = scrollLeft;
+  slider.classList.add('active');
+  slider.style.transition = 'none'; // Disable transition during dragging
+
+  clearInterval(autoScrollInterval); // Clear auto-scroll interval
+});
+
+slider.addEventListener('mouseleave', () => {
+  if (isDown) snapToPosition();
+});
+
+slider.addEventListener('mouseup', () => {
+  if (isDown) snapToPosition();
+});
+
+slider.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - slider.offsetLeft;
+  const walk = (x - startX) * 3;
+  slider.scrollLeft = scrollLeft - walk;
+});
+
+function snapToPosition() {
+  isDown = false;
+  slider.classList.remove('active');
+  slider.style.transition = ''; // Re-enable transition for snapping
+
+  let threshold = slider.offsetWidth * 0.4;
+  let dragDistance = scrollLeft - slider.scrollLeft;
+
+  if (Math.abs(dragDistance) > threshold) {
+    // Slide to the next/previous testimonial
+    slider.scrollLeft += dragDistance > 0 ? -slider.offsetWidth : slider.offsetWidth;
+  } else {
+    // Snap back to the original position
+    slider.scrollLeft = startScrollLeft;
+  }
+
+  startAutoScroll();
+}
+
+// Auto-scroll functionality
+function autoScroll() {
+  if (isDown) return;
+  slider.scrollLeft += slider.offsetWidth;
+}
+
+function startAutoScroll() {
+  autoScrollInterval = setInterval(autoScroll, 4000);
+}
+
+startAutoScroll(); // Initialize auto-scroll

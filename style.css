@@ -281,7 +281,7 @@ header{
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8); /* Dark overlay for background */
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -289,8 +289,8 @@ header{
 }
 
 .maximizedImage {
-    max-width: 80vw; /* Adjust the maximum width as needed for the maximized image */
-    max-height: 80vh; /* Adjust the maximum height as needed for the maximized image */
+    max-width: 80vw;
+    max-height: 80vh;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -299,6 +299,66 @@ header{
 .maximizedImage:hover {
     cursor: pointer;
 }
+.testimonialsMain h1{
+    color: #1d1f2a;
+    font-size: 68px;
+    font-family: 'Roboto', sans-serif;
+}
+.movFlex p{
+    color: #64677c;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+}
+.profile h4:nth-child(2){
+    color: #64677c;
+    font-size: 16px;
+}
+.profile h4:nth-child(3){
+    color: #ff9908;
+    font-size: 16px;
+}
+.testimonialPhoto{
+    background-image: url(test.jpg.webp);
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+.profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 5px;
+}
+.testimonial{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 35px;
+    flex-shrink: 0; /* Prevents resizing of testimonials */
+    width: 100%;
+}
+.testimonialsMain{
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    row-gap: 35px;
+    justify-content: center;
+    overflow: hidden;
+}
+.movFlex{
+    display: flex;
+    overflow: hidden; /* Hide scrollbar */
+    cursor: grab; /* Change cursor to indicate draggability */
+    scroll-snap-type: x mandatory;
+    transition: scroll-left 1s ease-out;
+}
+.movFlex.grabbing {
+    cursor: grabbing;
+}
+
 
 
 
