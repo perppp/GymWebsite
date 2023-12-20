@@ -1,6 +1,10 @@
 *{
     font-family: sans-serif;
     margin: 0px;
+    /* overflow-x: hidden; */
+}
+body{
+    overflow-x: hidden;
 }
 .logotxt{
     
@@ -59,7 +63,7 @@ nav{
 header{
     background-color: #040404;
     height: 124px;
-    border-bottom: 1px solid #f09f28;
+    border-bottom: 2px solid #f09f28;
 }
 .firstMain{
     display: flex;
@@ -79,6 +83,8 @@ header{
     height: 100%;
     overflow: hidden;
     white-space: nowrap;
+    margin: 0;
+    padding: 0;
 }
 
 .slide {
@@ -358,6 +364,135 @@ header{
 .movFlex.grabbing {
     cursor: grabbing;
 }
+.plans{
+    background-image: url(guyPushingTire.webp);
+    width: 100vw;
+    height: 900px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+}
+.plansEach{
+    width: 360px;
+    height: 535px;
+    background-color: white;
+    border: 10px solid #ff5408;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    position: relative;
+    z-index: 10;
+}
+.planPrice{
+    font-size: 68px;
+    font-family: 'Roboto', sans-serif;
+    color: #ff9908;
+}
+.plansEach h3{
+    color: #1d1f2a;
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif;
+}
+.plansEach ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 25px;
+}
+.whatYouGet{
+    padding-left: 0;
+}
+.whatYouGet li{
+    color: #64677c;
+    list-style-type: none;
+    font-size: 15px;
+}
+.getItNow{
+    border-bottom: 3px solid #ff5408;
+    width: 195px;
+    height: 58px;
+}
+.sectionWhole{
+    position: relative;
+}
+.redOverlay{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(29,31,42,0.91);
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+
+}
+.orangeSubscribe{
+    width: 100vw;
+    height: 237px;
+    background-color: #ff9908;
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.orangeSubscribe div{
+    font-size: 68px;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+.orangeSubscribe div a{
+    color: #1d1f2a;
+}
+.orangeSubscribe div a:hover{
+    color: #ff5408;
+}
+.footerMain{
+    width: 100vw;
+    height: 380px;
+    background-color: #100c14;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15%;
+}
+.footerFirstFlex p{
+    color: #64677c;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    line-height: 28px;
+}
+.socialMedias{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+.footerFirstFlex{
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+}
+.oneFooterInfo h3{
+    color: white;
+    font-size: 18px;
+}
+.footerUl li{
+    color: #64677c;
+    font-size: 15px;
+}
+.oneFooterInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.footerTexts{
+    display: flex;
+    flex-direction: row;
+    gap: 75px;
+}
 
 
 
@@ -367,7 +502,7 @@ header{
 
 
 @media only screen and (max-width: 750px){
-    a{
+    nav a{
         font-size: 13px;
     }
     .touchButton{
