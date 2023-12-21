@@ -126,3 +126,90 @@ function startAutoScroll() {
 }
 
 startAutoScroll(); // Initialize auto-scroll
+
+
+
+
+
+//Scroll to a tags
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to handle smooth scrolling
+  function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
+
+
+  document.getElementById("subA").addEventListener("click", function () {
+    scrollToSection("subscriptions");
+  });
+
+  document.getElementById("testA").addEventListener("click", function () {
+    scrollToSection("testimonials");
+  });
+
+  document.getElementById("plansA").addEventListener("click", function () {
+    scrollToSection("plansSection");
+  });
+
+  document.getElementById("contactA").addEventListener("click", function () {
+    scrollToSection("footer");
+  });
+});
+
+
+
+
+
+// Register popup
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const registerButton = document.getElementById('registerButton');
+  const registerPopup = document.getElementById('registerPopup');
+  const loginPopup = document.getElementById('loginPopup');
+  const overlay = document.querySelector('.overlay');
+
+  function openPopup(popup) {
+      popup.style.display = 'block';
+  }
+
+  function closePopup(popup) {
+      popup.style.display = 'none';
+  }
+
+  registerButton.addEventListener('click', function () {
+      openPopup(registerPopup);
+  });
+
+  document.getElementById('showLogin').addEventListener('click', function () {
+      closePopup(registerPopup);
+      openPopup(loginPopup);
+  });
+
+  document.getElementById('showRegister').addEventListener('click', function () {
+      closePopup(loginPopup);
+      openPopup(registerPopup);
+  });
+
+  overlay.addEventListener('click', function () {
+      closePopup(registerPopup);
+      closePopup(loginPopup);
+  });
+
+  document.querySelectorAll('.close').forEach(function (closeButton) {
+      closeButton.addEventListener('click', function () {
+          const popupId = closeButton.closest('.popup').id;
+          closePopup(document.getElementById(popupId));
+      });
+  });
+});
+
+
