@@ -227,13 +227,22 @@ function closePopup(popup) {
 
 // Function to save email and password to localStorage
 function saveCredentials(email, password) {
-    const credentials = {
-        email: email,
-        password: password
-    };
-    localStorage.setItem('userCredentials', JSON.stringify(credentials));
-}
+    // Retrieve existing credentials or initialize an empty array
+    const storedCredentials = JSON.parse(localStorage.getItem('userCredentials')) || [];
 
+    // Ensure storedCredentials is an array
+    if (!Array.isArray(storedCredentials)) {
+        // If not an array, initialize it as an empty array
+        localStorage.setItem('userCredentials', JSON.stringify([]));
+        return;
+    }
+
+    // Add new credentials to the array
+    storedCredentials.push({ email, password });
+
+    // Save the updated array back to localStorage
+    localStorage.setItem('userCredentials', JSON.stringify(storedCredentials));
+}
 
 myForm.addEventListener('submit', function (el) {
     el.preventDefault();
@@ -260,61 +269,87 @@ myForm.addEventListener('submit', function (el) {
         myPassword.nextElementSibling.style.display = "none";
     }
 
-    if (!myRePassword === myPassword || myRePassword.value.length < 8) {
+    if (!myRePassword.value === myPassword.value || myRePassword.value.length < 8) {
         result = false;
-        myPassword.nextElementSibling.style.display = "block";
+        myRePassword.nextElementSibling.style.display = "block";
     } else {
-        myPassword.nextElementSibling.style.display = "none";
+        myRePassword.nextElementSibling.style.display = "none";
     }
 
     if (result) {
-      saveCredentials(myEmail.value, myPassword.value);
-  
-      closePopup('registerPopup');
-  }
+        saveCredentials(myEmail.value, myPassword.value);
+        closePopup('registerPopup');
+    }
 });
-
 
 document.addEventListener('DOMContentLoaded', function () {
-  const registerButton = document.getElementById('registerButton');
-  const registerPopup = document.getElementById('registerPopup');
-  const loginPopup = document.getElementById('loginPopup');
-  const overlay = document.querySelector('.overlay');
+    const registerButton = document.getElementById('registerButton');
+    const registerPopup = document.getElementById('registerPopup');
+    const loginPopup = document.getElementById('loginPopup');
+    const overlay = document.querySelector('.overlay');
 
-  function openPopup(popup) {
-      popup.style.display = 'block';
-  }
+    function openPopup(popup) {
+        popup.style.display = 'block';
+    }
 
-  function closePopup(popup) {
-      popup.style.display = 'none';
-  }
+    function closePopup(popup) {
+        popup.style.display = 'none';
+    }
 
-  registerButton.addEventListener('click', function () {
-      openPopup(registerPopup);
-  });
+    registerButton.addEventListener('click', function () {
+        openPopup(registerPopup);
+    });
 
-  document.getElementById('showLogin').addEventListener('click', function () {
-      closePopup(registerPopup);
-      openPopup(loginPopup);
-  });
+    document.getElementById('showLogin').addEventListener('click', function () {
+        closePopup(registerPopup);
+        openPopup(loginPopup);
+    });
 
-  document.getElementById('showRegister').addEventListener('click', function () {
-      closePopup(loginPopup);
-      openPopup(registerPopup);
-  });
+    document.getElementById('showRegister').addEventListener('click', function () {
+        closePopup(loginPopup);
+        openPopup(registerPopup);
+    });
 
-  overlay.addEventListener('click', function () {
-      closePopup(registerPopup);
-      closePopup(loginPopup);
-  });
+    overlay.addEventListener('click', function () {
+        closePopup(registerPopup);
+        closePopup(loginPopup);
+    });
 
-  document.querySelectorAll('.close').forEach(function (closeButton) {
-      closeButton.addEventListener('click', function () {
-          const popupId = closeButton.closest('.popup').id;
-          closePopup(document.getElementById(popupId));
-      });
-  });
+    document.querySelectorAll('.close').forEach(function (closeButton) {
+        closeButton.addEventListener('click', function () {
+            const popupId = closeButton.closest('.popup').id;
+            closePopup(document.getElementById(popupId));
+        });
+    });
 });
 
-console.log(localStorage)
+const mySubmitLoginButton = document.getElementById('mySubmitLogin');
+const registerButton = document.getElementById('registerButton');
+const myEmailLogin = document.getElementById('myEmailLogin');
+const myPasswordLogin = document.getElementById('myPasswordLogin');
+const loginPopup = document.getElementById('loginPopup');
+
+function checkCredentials(email, password) {
+    const storedCredentials = JSON.parse(localStorage.getItem('userCredentials')) || [];
+    return storedCredentials.some(cred => cred.email === email && cred.password === password);
+}
+
+mySubmitLoginButton.addEventListener('click', function (event) {
+    event.preventDefault();
+
+    const email = myEmailLogin.value;
+    const password = myPasswordLogin.value;
+
+    const errorSpan = mySubmitLoginButton.nextElementSibling;
+
+    if (checkCredentials(email, password)) {
+        loginPopup.style.display = 'none';
+
+        registerButton.textContent = "My Profile";
+        registerButton.disabled = true;
+    } else {
+        errorSpan.textContent = "Email or password is incorrect";
+        errorSpan.style.display = "block";
+    }
+});
 
