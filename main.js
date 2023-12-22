@@ -212,6 +212,69 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+const myUsername = document.getElementById("myUsername");
+const myEmail = document.getElementById("myEmail");
+const myPassword = document.getElementById("myPassword");
+const myRePassword = document.getElementById("myRePassword");
+const myForm = document.getElementById("myForm");
+
+function closePopup(popup) {
+  const popupElement = document.getElementById(popup);
+  if (popupElement) {
+      popupElement.style.display = 'none';
+  }
+}
+
+// Function to save email and password to localStorage
+function saveCredentials(email, password) {
+    const credentials = {
+        email: email,
+        password: password
+    };
+    localStorage.setItem('userCredentials', JSON.stringify(credentials));
+}
+
+
+myForm.addEventListener('submit', function (el) {
+    el.preventDefault();
+
+    let result = true;
+    if (myUsername.value.length == 0) {
+        myUsername.nextElementSibling.style.display = "block";
+        result = false;
+    } else {
+        myUsername.nextElementSibling.style.display = "none";
+    }
+
+    if (myEmail.value.length == 0 || !myEmail.validity.valid) {
+        result = false;
+        myEmail.nextElementSibling.style.display = "block";
+    } else {
+        myEmail.nextElementSibling.style.display = "none";
+    }
+
+    if (!myPassword.validity.valid || myPassword.value.length == 0) {
+        result = false;
+        myPassword.nextElementSibling.style.display = "block";
+    } else {
+        myPassword.nextElementSibling.style.display = "none";
+    }
+
+    if (!myRePassword === myPassword || myRePassword.value.length < 8) {
+        result = false;
+        myPassword.nextElementSibling.style.display = "block";
+    } else {
+        myPassword.nextElementSibling.style.display = "none";
+    }
+
+    if (result) {
+      saveCredentials(myEmail.value, myPassword.value);
+  
+      closePopup('registerPopup');
+  }
+});
+
+
 document.addEventListener('DOMContentLoaded', function () {
   const registerButton = document.getElementById('registerButton');
   const registerPopup = document.getElementById('registerPopup');
@@ -253,4 +316,5 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+console.log(localStorage)
 

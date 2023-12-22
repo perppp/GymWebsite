@@ -18,12 +18,16 @@
         <div class="popup-content" onclick="event.stopPropagation();">
             <span class="close" onclick="closePopup('registerPopup')">&times;</span>
             <h2>Register</h2>
-            <form>
-                <input type="text" placeholder="Username">
-                <input type="email" placeholder="Enter your email">
-                <input type="password" placeholder="Password">
-                <input type="password" placeholder="Confirm your password">
-                <button style="height: 35px;" type="submit">Register</button>
+            <form novalidate id="myForm">
+                <input id="myUsername" type="text" placeholder="Username">
+                <span style="display: none;">Username is required</span>
+                <input id="myEmail" type="email" placeholder="Enter your email">
+                <span style="display: none;">Email is required</span>
+                <input id="myPassword" type="password" placeholder="Password">
+                <span style="display: none;">Password is required</span>
+                <input id="myRePassword" type="password" placeholder="Confirm your password">
+                <span style="display: none;">Repassword is required and it has to be the same as password</span>
+                <button id="mySubmit" style="height: 35px;" type="submit">Register</button>
             </form>
             <p class="registerP">Already have an account? <button style="height: 25px;" id="showLogin">Log in</button></p>
         </div>
@@ -33,9 +37,10 @@
             <span class="close" onclick="closePopup('loginPopup')">&times;</span>
             <h2>Login</h2>
             <form>
-                <input type="email" placeholder="Enter your email">
-                <input type="password" placeholder="Password">
-                <button style="height: 35px;" type="submit">Login</button>
+                <input id="myEmailLogin" type="email" placeholder="Enter your email">
+                <input id="myPasswordLogin" type="password" placeholder="Password">
+                <button id="mySubmitLogin" style="height: 35px;" type="submit">Login</button>
+                <span style="display: none;">Email or password is incorrect</span>
             </form>
             <p class="registerP">Don't have an account? <button style="height: 25px;" id="showRegister">Register</button></p>
         </div>
@@ -185,7 +190,7 @@
                     <div class="profile">
                         <div class="testimonialPhoto"></div>
                         <h4>Lazare</h4>
-                        <h4>IT</h4>
+                        <h4>Fitness Coach</h4>
                     </div>
                 </div>
             </div>
