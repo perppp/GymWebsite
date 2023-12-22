@@ -14,6 +14,55 @@
 
 // setInterval(nextSlide, 3000);
 
+
+// Slider thing
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  let currentSlide = 0;
+  const totalSlides = document.querySelectorAll('.slide').length;
+  const slidesContainer = document.querySelector('.slider');
+
+  if (!slidesContainer || !slidesContainer.style || !('transform' in slidesContainer.style)) {
+      console.error("Slider elements not found or not supported.");
+  }
+
+  function showSlide(index) {
+      if (index >= 0 && index < totalSlides) {
+          currentSlide = index;
+          const translateValue = -index * 100 + (index === 0 ? 0.01 : 0) + '%';
+          slidesContainer.style.transform = 'translateX(' + translateValue + ')';
+      }
+  }
+
+  function updateDots() {
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentSlide);
+      });
+  }
+
+  function changeSlide(index) {
+      showSlide(index);
+      updateDots();
+  }
+
+  const dots = document.querySelectorAll('.dot');
+  dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+          changeSlide(index);
+      });
+  });
+
+  showSlide(currentSlide);
+  updateDots();
+});
+
+
+
+
+
 var info1Elements = document.querySelectorAll('.info1');
 
   info1Elements.forEach(function(info1Element) {

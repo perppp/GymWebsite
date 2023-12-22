@@ -57,29 +57,29 @@
         </div>
     </header>
     <div class="slider mainAbs">
-        <div class="slide" style="background-image: url('man.jpg');">
+        <div class="slide" id="slide1" style="background-image: url('man.jpg');">
             <div class="txtSlides">
                 <h2 class="motivText">Don't stop <br>when you're tired. <br>Stop when <br>you're <span class="done">DONE</span></h2>
                 <div class="touchButton touchButton2">Join Us</div>
             </div>
         </div>
-        <div class="slide" style="background-image: url('man.jpg');">
+        <div class="slide" id="slide2" style="background-image: url('man.jpg');">
             <div class="txtSlides">
                 <h2 class="motivText">Don't stop <br>when you're tired. <br>Stop when <br>you're <span class="done">DONE</span></h2>
                 <div class="touchButton touchButton2">Join Us</div>
             </div>
         </div>
-        <div class="slide" style="background-image: url('man.jpg');">
+        <div class="slide" id="slide3" style="background-image: url('man.jpg');">
             <div class="txtSlides">
                 <h2 class="motivText">Don't stop <br>when you're tired. <br>Stop when <br>you're <span class="done">DONE</span></h2>
                 <div class="touchButton touchButton2">Join Us</div>
             </div>
         </div>
     </div>
-    <ul class="dots">
-        <li class="dot">01.</li>
-        <li class="dot">02.</li>
-        <li class="dot">03.</li>
+    <ul class="dots" id="dotContainer">
+        <li class="dot" onclick="changeSlide(0)">01.</li>
+        <li class="dot" onclick="changeSlide(1)">02.</li>
+        <li class="dot" onclick="changeSlide(2)">03.</li>
     </ul>
 
     <div class="mainGray">
