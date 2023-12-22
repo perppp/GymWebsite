@@ -19,40 +19,38 @@
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
+$(document).ready(function () {
   let currentSlide = 0;
-  const totalSlides = document.querySelectorAll('.slide').length;
-  const slidesContainer = document.querySelector('.slider');
+  const totalSlides = $('.slide').length;
+  const slidesContainer = $('.slider');
 
-  if (!slidesContainer || !slidesContainer.style || !('transform' in slidesContainer.style)) {
-      console.error("Slider elements not found or not supported.");
+  if (!slidesContainer.length || !slidesContainer.css || !('transform' in slidesContainer[0].style)) {
+    console.error("Slider elements not found or not supported.");
   }
 
   function showSlide(index) {
-      if (index >= 0 && index < totalSlides) {
-          currentSlide = index;
-          const translateValue = -index * 100 + (index === 0 ? 0.01 : 0) + '%';
-          slidesContainer.style.transform = 'translateX(' + translateValue + ')';
-      }
+    if (index >= 0 && index < totalSlides) {
+      currentSlide = index;
+      const translateValue = -index * 100 + (index === 0 ? 0.01 : 0) + '%';
+      slidesContainer.css('transform', 'translateX(' + translateValue + ')');
+    }
   }
 
   function updateDots() {
-      const dots = document.querySelectorAll('.dot');
-      dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === currentSlide);
-      });
+    const dots = $('.dot');
+    dots.each(function (i) {
+      $(this).toggleClass('active', i === currentSlide);
+    });
   }
 
   function changeSlide(index) {
-      showSlide(index);
-      updateDots();
+    showSlide(index);
+    updateDots();
   }
 
-  const dots = document.querySelectorAll('.dot');
-  dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-          changeSlide(index);
-      });
+  $('.dot').click(function () {
+    const index = $(this).index();
+    changeSlide(index);
   });
 
   showSlide(currentSlide);
@@ -69,14 +67,12 @@ var info1Elements = document.querySelectorAll('.info1');
     var info1PathElements = info1Element.querySelectorAll('path');
 
     info1Element.addEventListener('mouseover', function() {
-      // Change the color of info1 path to "#fc540c"
       info1PathElements.forEach(function(pathElement) {
         pathElement.style.fill = '#fc540c';
       });
     });
 
     info1Element.addEventListener('mouseout', function() {
-      // Restore the original color when mouse leaves
       info1PathElements.forEach(function(pathElement) {
         pathElement.style.fill = '#676a79';
       });
@@ -124,9 +120,9 @@ slider.addEventListener('mousedown', (e) => {
   scrollLeft = slider.scrollLeft;
   startScrollLeft = scrollLeft;
   slider.classList.add('active');
-  slider.style.transition = 'none'; // Disable transition during dragging
+  slider.style.transition = 'none';
 
-  clearInterval(autoScrollInterval); // Clear auto-scroll interval
+  clearInterval(autoScrollInterval);
 });
 
 slider.addEventListener('mouseleave', () => {
@@ -154,17 +150,14 @@ function snapToPosition() {
   let dragDistance = scrollLeft - slider.scrollLeft;
 
   if (Math.abs(dragDistance) > threshold) {
-    // Slide to the next/previous testimonial
     slider.scrollLeft += dragDistance > 0 ? -slider.offsetWidth : slider.offsetWidth;
   } else {
-    // Snap back to the original position
     slider.scrollLeft = startScrollLeft;
   }
 
   startAutoScroll();
 }
 
-// Auto-scroll functionality
 function autoScroll() {
   if (isDown) return;
   slider.scrollLeft += slider.offsetWidth;
@@ -174,7 +167,7 @@ function startAutoScroll() {
   autoScrollInterval = setInterval(autoScroll, 4000);
 }
 
-startAutoScroll(); // Initialize auto-scroll
+startAutoScroll();
 
 
 
@@ -184,7 +177,6 @@ startAutoScroll(); // Initialize auto-scroll
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Function to handle smooth scrolling
   function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
